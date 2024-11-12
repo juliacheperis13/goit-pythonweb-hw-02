@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  library_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: library_app
+    tty: true
+    depends_on:
+      - postgres
+    ports:
+      - '8000:8000'
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: hw02
+      POSTGRES_USER: db
+      POSTGRES_PASSWORD: 567234
+    ports:
+      - "5432:5432"
